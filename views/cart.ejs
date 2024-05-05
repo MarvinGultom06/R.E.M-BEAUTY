@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="icon" type="image/png" href="./assets/images/favicon.png">
+    <title>Shopping Cart - R.E.M Beauty</title>
+</head>
+<body>
+    <div class="navigation">
+      <div class="nav-center container d-flex">
+        <a href="/" class="logo"><img src="assets/images/logo.png" alt="Logo"></a>
+
+        <ul class="nav-list d-flex">
+          <li class="nav-item">
+            <a href="/" class="nav-link">Home</a>
+          </li>
+          <li class="nav-item">
+            <a href="/terms" class="nav-link">Terms</a>
+          </li>
+          <li class="nav-item">
+            <a href="/about" class="nav-link">About</a>
+          </li>
+          <li class="nav-item">
+            <a href="/contact" class="nav-link">Contact</a>
+          </li>
+          <li class="icons d-flex">
+            <a href="/login" class="icon">
+              <i class="bx bx-user"></i>
+            </a>
+            <div class="icon">
+              <i class="bx bx-search"></i>
+            </div>
+            <div class="icon">
+              <i class="bx bx-heart"></i>
+              <span class="d-flex">0</span>
+            </div>
+            <a href="/cart" class="icon">
+              <i class="bx bx-cart"></i>
+              <span class="d-flex">0</span>
+            </a>
+          </li>
+        </ul>
+
+        <div class="hamburger">
+          <i class="bx bx-menu-alt-left"></i>
+        </div>
+      </div>
+    </div>
+
+    <main>
+      <h1>Your Shopping Cart</h1>
+          <ul id="cart-items">
+          <% items.forEach(item => { %>
+              <li>
+                  <img src="<%= item.image %>" alt="<%= item.product %>" style="width: 100px; height: auto;">
+                  <div class="cart-product-name"><%= item.product %></div>
+                    <div class="cart-details">
+                    <div>Quantity: <%= item.quantity %></div>
+                    <div>Price: $<%= item.price.toFixed(2) %></div>
+                    <div>Total: $<%= (item.quantity * item.price).toFixed(2) %></div>
+                  </div>
+                  <form action="/update-cart" method="post">
+                    <input type="hidden" name="productId" value="<%= item._id %>">
+                    <input type="number" name="quantity" value="<%= item.quantity %>" min="1">
+                      <button type="submit">Update</button>
+                  </form>
+                  <form action="/remove-from-cart" method="post">
+                    <input type="hidden" name="productId" value="<%= item._id %>">
+                      <button type="submit">Remove</button>
+                  </form>
+                </li>
+            <% }); %>
+          </ul>
+        <h2>Total Price:  $<%= total %></h2>
+        <h2>Total Shipping: $0.00</h2>
+        <a href="/" class="button" onclick="thankYouMessage()">Continue Shopping</a>
+      
+    </main>
+    <script>
+      function thankYouMessage() {
+          alert("Thank you for shopping with us!");
+      }
+  </script>
+    
+
+    
+</body>
+</html>

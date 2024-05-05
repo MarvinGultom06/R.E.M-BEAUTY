@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Review Page</title>
+    <link rel="stylesheet" href="/review.css">
+    <link rel="icon" type="image/png" href="./assets/images/favicon.png">
+</head>
+<body>
+    <h1>User Reviews</h1>
+    <div id="review-form">
+        <input id="username-input" type="text" placeholder="Enter your username..." />
+        <textarea id="review-input" placeholder="Write your review here..."></textarea>
+        <button onclick="submitReview()">Submit Review</button>
+    </div>
+    <div id="search-review-form" class="search-form">
+        <input type="text" id="search-input" class="search-input" placeholder="Search reviews by keyword..." />
+        <button class="search-button" onclick="searchReviews()">Search</button>
+    </div>
+    
+    <div id="reviews-container">
+        <!-- Reviews will be appended here -->
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            fetchReviews();
+        });
+
+        function submitReview() {
+            const username = document.getElementById('username-input').value;
+            const reviewText = document.getElementById('review-input').value;
+            if (username && reviewText) {
+                const review = { username: username, text: reviewText };
+
+                fetch('/review', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(review)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data && data.id) {
+                        displayReview(data);
+                        document.getElementById('review-input').value = '';
+                        document.getElementById('username-input').value = '';
+                    } else {
+                        throw new Error('Server responded without a review ID.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Failed to submit review:', error);
+                    alert('There was an error submitting your review. Please try again.');
+                });
+            } else {
+                alert('Please fill in both fields.');
+            }
+        }
+
+        function displayReview(review) {
+            const container = document.getElementById('reviews-container');
+            const div = document.createElement('div');
+            div.className = 'review';
+            div.id = 'review-' + review.id;  // Ensure review.id is not undefined
+            div.textContent = `${review.username}: ${review.text}`;
+        
+            const editButton = document.createElement('button');
+            editButton.textContent = 'Edit';
+            editButton.className = 'edit-button';
+            editButton.onclick = () => editReview(review.id.toString(), review);  // Convert ID to string if not already
+        
+            const deleteButton = document.createElement('button');
+            deleteButton.textContent = 'Delete';
+            deleteButton.className = 'delete-button';
+            deleteButton.onclick = () => confirmDeleteReview(review.id.toString());  // Convert ID to string if not already
+        
+            div.appendChild(editButton);
+            div.appendChild(deleteButton);
+            container.appendChild(div);
+        }
+
+        function fetchReviews() {
+            fetch('/reviews')
+            .then(response => {
+                if (!response.ok) throw new Error('Failed to fetch reviews.');
+                return response.json();
+            })
+            .then(reviews => {
+                reviews.forEach(review => {
+                    displayReview(review);
+                });
+            })
+            .catch(error => {
+                console.error('Error loading reviews:', error);
+            });
+        }
+
+        function editReview(reviewId, review) {
+            const newText = prompt('Edit your review:', review.text);
+            if (newText && newText !== review.text) {
+                fetch(`/review/${reviewId}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ text: newText })
+                })
+                .then(response => {
+                    if (!response.ok) throw new Error('Failed to edit review.');
+                    document.getElementById('review-' + reviewId).childNodes[0].nodeValue = `${review.username}: ${newText}`;
+                })
+                .catch(error => console.error('Error updating review:', error));
+            }
+        }
+
+        function confirmDeleteReview(reviewId) {
+            if (confirm('Are you sure you want to delete this review?')) {
+                fetch(`/review/${reviewId}`, {
+                    method: 'DELETE'
+                })
+                .then(response => {
+                    if (!response.ok) throw new Error('Failed to delete review.');
+                    const reviewDiv = document.getElementById('review-' + reviewId);
+                    reviewDiv.parentNode.removeChild(reviewDiv);
+                })
+                .catch(error => console.error('Error deleting review:', error));
+            }
+        }
+
+        function searchReviews() {
+            const searchValue = document.getElementById('search-input').value.toLowerCase();
+            const reviews = document.querySelectorAll('#reviews-container .review');
+        
+            reviews.forEach(review => {
+                const isVisible = review.textContent.toLowerCase().includes(searchValue);
+                review.style.display = isVisible ? 'block' : 'none';
+            });
+        }
+        
+    </script>
+    <a href="/" class="back-button">Back to Home</a>
+</body>
+</html>

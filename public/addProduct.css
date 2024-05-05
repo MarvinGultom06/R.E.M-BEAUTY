@@ -1,0 +1,70 @@
+/* styles.css */
+body {
+    background-color: #ffe5ec; /* Light pink background for the whole page */
+    color: #ff85a1; /* Darker pink color for the text */
+    font-family: Arial, sans-serif; /* Set a nice, readable font */
+}
+
+h1, h3 {
+    color: #ff85a1; /* Darker pink color for headings */
+}
+
+form {
+    background-color: #ffffff; /* White background for form */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin: 20px;
+}
+
+input[type="text"], input[type="number"], textarea, input[type="file"] {
+    width: 100%;
+    padding: 8px;
+    margin: 5px 0 20px;
+    border: 2px solid #ff85a1;
+    border-radius: 4px;
+}
+
+input[type="text"]:focus, input[type="number"]:focus, textarea:focus {
+    border-color: #ff5599; /* Slightly brighter pink for focus */
+}
+
+button {
+    background-color: #ff85a1; /* Button background color */
+    color: white; /* White text for buttons */
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #ff5599; /* Slightly brighter pink when hovered */
+}
+
+#productList {
+    margin: 20px;
+}
+
+#productList div {
+    background-color: #ffffff;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.backA-button{
+    text-decoration: none;
+    position: absolute;
+    background-color: #ff85a1;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin: 5px 5px 5px 0;
+    right: 10px;
+}

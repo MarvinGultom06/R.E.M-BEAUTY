@@ -1,0 +1,74 @@
+/* General link colors */
+a {
+    color: #ff85a1;
+    text-decoration: none; /* Menghilangkan garis bawah */
+}
+
+/* Styling untuk header navigation links */
+.top-nav ul li a {
+    color: #ff85a1;
+    padding: 10px;
+    display: block;
+}
+
+.top-nav ul li a:hover {
+    background-color: #ffa1c5; /* Warna lebih terang dari #ff85a1 */
+}
+
+/* Button styles */
+button {
+    background-color: #ff85a1;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px; /* Rounded corners */
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #ff6790; /* Warna hover yang lebih gelap */
+}
+
+/* Container and product item styling */
+.container {
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+}
+
+#cart-items li {
+    background-color: #fff;
+    border: 1px solid #ff85a1;
+    margin-top: 10px;
+    padding: 10px;
+    list-style-type: none;
+}
+
+#cart-items img {
+    margin-right: 10px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .container, button {
+        width: 100%;
+    }
+}
+
+.navigation-buttons {
+    margin-top: 20px;
+}
+
+#goToAddProductPage {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#goToAddProductPage:hover {
+    background-color: #45a049;
+}

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="/LoginSignup.css">
+    <link rel="icon" type="image/png" href="./assets/images/favicon.png">
+</head>
+<body>
+  <!-- Form Login -->
+  <div class="form-container">
+    <h2>Login</h2>
+    <form action="/login" method="post">
+      <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="username" placeholder="Enter your name" required autocomplete="off">
+      </div>
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" placeholder="Password" required>
+      </div>
+      <button type="submit" class="submit-btn">Login</button>
+    </form>
+
+    <!-- Add Login as Admin Link -->
+    <p><a href="/LoginAdmin" class="link">Login as Admin</a></p>
+
+    <label style="display: block; margin-bottom: 20px;">
+      <div style="display: inline-block; vertical-align: middle;">
+        <input type="checkbox" checked="checked" name="remember" style="margin-right: 2px;">
+      </div>
+      Remember me
+    </label>
+
+    <p>Don't have an account? <a class="link" href="/signup">SignUp</a></p>
+  </div>
+  
+</body>
+</html>

@@ -1,0 +1,144 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+    color: #333;
+}
+
+h1 {
+    color: #ff85a1;
+    font-size: 50px;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+}
+
+#review-form {
+    background-color: #ffc8dd;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+#username-input, #review-input {
+    width: 100%; /* Makes input and textarea full width of the form */
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    box-sizing: border-box; /* Includes padding and border in the element's width and height */
+}
+
+#review-input {
+    height: 100px; /* Sets a fixed height for the textarea */
+    resize: vertical; /* Allows the user to vertically resize the textarea */
+}
+
+button {
+    color: #ffc8dd;
+    border: none;
+    padding: 10px 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #ffc2d1; /* Darker shade for hover effect */
+}
+
+#reviews-container {
+    margin-top: 20px;
+}
+
+.review {
+    background-color: #ffe5ec;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    margin-bottom: 10px;
+}
+
+.edit-button, .delete-button {
+    background-color: #fb6f92;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    font-size: 0.8em;
+    border-radius: 4px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.edit-button {
+    background-color: #fb6f92;
+}
+
+.edit-button:hover, .delete-button:hover {
+    opacity: 0.9;
+}
+
+
+button, .back-button {
+    background-color: #fb6f92; 
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s; 
+    text-decoration: none; 
+    display: inline-block; 
+}
+
+
+button:hover, .back-button:hover {
+    background-color: #ffc2d1; 
+}
+
+
+.back-button {
+    background-color: #fb6f92; 
+    margin-bottom: 20px; 
+}
+
+
+.back-button:hover {
+    background-color: #ff8fab; 
+}
+
+.search-form {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.search-input {
+    padding: 8px 10px;
+    margin-right: 8px;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    width: 300px; /* Adjust width as needed */
+}
+
+.search-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: #ff8fab;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.search-button:hover {
+    background-color: #ffc2d1;
+}
